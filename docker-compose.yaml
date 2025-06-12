@@ -200,6 +200,7 @@ services:
       - "8070:8070"
     volumes:
       - ./app:/app
+      - ./logs:/app/logs
     restart: always
 
   mongo:
@@ -225,6 +226,70 @@ services:
       - mongo
     restart: always
 
+  prometheus:
+    image: prom/prometheus:latest
+    container_name: prometheus
+    volumes:
+      - ./monitoring/prometheus.yml:/etc/prometheus/prometheus.yml
+      - ./monitoring/alert.rules.yml:/etc/prometheus/alert.rules.yml
+    ports: ["9090:9090"]
+    restart: unless-stopped
+    networks: [monitoring]
+    
+  grafana:
+    image: grafana/grafana:latest
+    ports:
+      - "3000:3000"
+    volumes:
+      - grafana-storage:/var/lib/grafana
+      # provisioning
+      - ./monitoring/grafana/provisioning:/etc/grafana/provisioning
+      # JSON dashboards
+      - ./monitoring/grafana/dashboards:/etc/grafana/provisioning/dashboards
+    environment:
+      GF_SECURITY_ADMIN_PASSWORD: admin   
+    networks: [monitoring]
+  
+  alertmanager:
+    image: prom/alertmanager:latest
+    container_name: alertmanager
+    volumes:
+      - ./monitoring/alertmanager.yml:/etc/alertmanager/alertmanager.yml
+    ports: ["9093:9093"]
+    restart: unless-stopped
+    networks: [monitoring]
+  
+  node-exporter:
+    image: prom/node-exporter:latest
+    container_name: node-exporter
+    command:
+      - '--web.listen-address=:9100'
+    ports:
+      - "9100:9100"
+    restart: unless-stopped
+    networks: [monitoring]
+
+  fluent-bit:
+    image: fluent/fluent-bit:latest
+    container_name: fluent-bit
+    volumes:
+      - ./monitoring/fluent-bit.conf:/fluent-bit/etc/fluent-bit.conf
+      - ./monitoring/parsers.conf:/fluent-bit/etc/parsers.conf
+      - /var/lib/docker:/var/lib/docker:ro
+      - /var/log:/var/log:ro
+      - ./logs:/app/logs:ro
+      - fluentbit-state:/fluent-bit/state
+    ports: ["2020:2020"]
+    restart: unless-stopped
+    networks: [monitoring]
+
 volumes:
   postgres-db-volume:
   mongo_data:
+  grafana-storage:
+  fluentbit-state:
+
+
+
+networks:
+  monitoring:

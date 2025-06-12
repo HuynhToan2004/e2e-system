@@ -1,0 +1,37 @@
+groups:
+  - name: api
+    rules:
+      - alert: HighErrorRate
+        expr: rate(api_request_errors_total[5m]) / rate(api_requests_total[5m]) > 0.5
+        for: 2m
+        labels:
+          severity: critical
+        annotations:
+          summary: "Error rate > 50 %"
+
+      - alert: SlowInference
+        expr: histogram_quantile(0.95, rate(inference_seconds_bucket[5m])) > 1
+        for: 2m
+        labels:
+          severity: warning
+        annotations:
+          summary: "p95 inference > 1 s"
+
+      - alert: LowConfidence
+        expr: histogram_quantile(0.5, rate(predict_confidence_bucket[5m])) < 0.6
+        for: 5m
+        labels:
+          severity: critical
+        annotations:
+          summary: "Median confidence < 0.6"
+
+  - name: dummy
+    rules:
+      - alert: AlwaysFiring
+        expr: vector(1)
+        for: 10s
+        labels:
+          severity: info
+        annotations:
+          summary: "This is a test alert that always fires"
+          description: "This alert is always active. Used to test the alert pipeline."

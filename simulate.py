@@ -4,7 +4,7 @@ import random
 import os
 
 URL = "http://localhost:8070/predict"
-IMG_DIR = "car_demo"
+IMG_DIR = "car_images"
 
 images = [os.path.join(IMG_DIR, f) for f in os.listdir(IMG_DIR) if f.lower().endswith(('.jpg', '.jpeg', '.png'))]
 

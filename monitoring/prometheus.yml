@@ -17,8 +17,8 @@ scrape_configs:
     static_configs: [{ targets: ['host.docker.internal:9100'] }]
 
 
-  - job_name: 'cadvisor'
-    static_configs: [{ targets: ['cadvisor:8080'] }]
+  # - job_name: 'cadvisor'
+  #   static_configs: [{ targets: ['cadvisor:8080'] }]
 
   # - job_name: 'dcgm'
   #   static_configs: [{ targets: ['gpu-exporter:9400'] }]

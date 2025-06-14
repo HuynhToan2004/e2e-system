@@ -1,0 +1,1 @@
+[2025-06-14T07:37:57.773+0000] {scheduler_job_runner.py:843} ERROR - Executor reports task instance <TaskInstance: lp_yolov8_pipeline.init_param_grid scheduled__2025-06-14T07:00:00+00:00 [queued]> finished (failed) although the task says it's queued. (Info: None) Was the task killed externally?

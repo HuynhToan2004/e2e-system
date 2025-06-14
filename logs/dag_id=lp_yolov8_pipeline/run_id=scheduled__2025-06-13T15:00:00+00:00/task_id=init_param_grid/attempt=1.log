@@ -1,0 +1,17 @@
+[2025-06-14T07:23:42.503+0000] {local_task_job_runner.py:120} INFO - ::group::Pre task execution logs
+[2025-06-14T07:23:42.577+0000] {taskinstance.py:2076} INFO - Dependencies all met for dep_context=non-requeueable deps ti=<TaskInstance: lp_yolov8_pipeline.init_param_grid scheduled__2025-06-13T15:00:00+00:00 [queued]>
+[2025-06-14T07:23:42.591+0000] {taskinstance.py:2076} INFO - Dependencies all met for dep_context=requeueable deps ti=<TaskInstance: lp_yolov8_pipeline.init_param_grid scheduled__2025-06-13T15:00:00+00:00 [queued]>
+[2025-06-14T07:23:42.592+0000] {taskinstance.py:2306} INFO - Starting attempt 1 of 2
+[2025-06-14T07:23:42.614+0000] {taskinstance.py:2330} INFO - Executing <Task(PythonOperator): init_param_grid> on 2025-06-13 15:00:00+00:00
+[2025-06-14T07:23:42.643+0000] {standard_task_runner.py:63} INFO - Started process 254 to run task
+[2025-06-14T07:23:42.662+0000] {standard_task_runner.py:90} INFO - Running: ['***', 'tasks', 'run', 'lp_yolov8_pipeline', 'init_param_grid', 'scheduled__2025-06-13T15:00:00+00:00', '--job-id', '49', '--raw', '--subdir', 'DAGS_FOLDER/main.py', '--cfg-path', '/tmp/tmpybyyzxb9']
+[2025-06-14T07:23:42.712+0000] {standard_task_runner.py:91} INFO - Job 49: Subtask init_param_grid
+[2025-06-14T07:23:42.908+0000] {task_command.py:426} INFO - Running <TaskInstance: lp_yolov8_pipeline.init_param_grid scheduled__2025-06-13T15:00:00+00:00 [running]> on host 62fa818faa21
+[2025-06-14T07:23:43.116+0000] {taskinstance.py:2648} INFO - Exporting env vars: AIRFLOW_CTX_DAG_OWNER='***' AIRFLOW_CTX_DAG_ID='lp_yolov8_pipeline' AIRFLOW_CTX_TASK_ID='init_param_grid' AIRFLOW_CTX_EXECUTION_DATE='2025-06-13T15:00:00+00:00' AIRFLOW_CTX_TRY_NUMBER='1' AIRFLOW_CTX_DAG_RUN_ID='scheduled__2025-06-13T15:00:00+00:00'
+[2025-06-14T07:23:43.122+0000] {taskinstance.py:430} INFO - ::endgroup::
+[2025-06-14T07:23:43.127+0000] {python.py:237} INFO - Done. Returned value was: {'freeze_layers': [10, 15], 'epochs': [5], 'lr0': [0.01, 0.1]}
+[2025-06-14T07:23:43.128+0000] {taskinstance.py:441} INFO - ::group::Post task execution logs
+[2025-06-14T07:23:43.208+0000] {taskinstance.py:1206} INFO - Marking task as SUCCESS. dag_id=lp_yolov8_pipeline, task_id=init_param_grid, run_id=scheduled__2025-06-13T15:00:00+00:00, execution_date=20250613T150000, start_date=20250614T072342, end_date=20250614T072343
+[2025-06-14T07:23:43.277+0000] {local_task_job_runner.py:240} INFO - Task exited with return code 0
+[2025-06-14T07:23:43.339+0000] {taskinstance.py:3503} INFO - 1 downstream tasks scheduled from follow-on schedule check
+[2025-06-14T07:23:43.342+0000] {local_task_job_runner.py:222} INFO - ::endgroup::

@@ -1,0 +1,6 @@
+artifact_location: mlflow-artifacts:/139258394477041911
+creation_time: 1749885834072
+experiment_id: '139258394477041911'
+last_update_time: 1749885834072
+lifecycle_stage: active
+name: YOLOv8n_Finetune

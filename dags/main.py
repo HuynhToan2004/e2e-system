@@ -156,7 +156,7 @@ def save_best_model(result: dict, metric_to_optimize="mAP50-95"):
 
     metadata = log_dataset_metadata("app/src/data.yaml")
     final_path = os.path.join("runs/detect", "best_model.pt")
-    shutil.copy(result["best_model"], final_path)
+    shutil.copyfile(result["best_model"], final_path)
 
     mlflow.set_tracking_uri(MLFLOW_URI)
     mlflow.set_experiment("YOLOv8n_Finetune")

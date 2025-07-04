@@ -5,8 +5,7 @@ global:
   # Cấu hình SMTP mặc định, áp dụng cho mọi email_configs
   smtp_smarthost: 'smtp.gmail.com:587'
   smtp_from: '22521486@gm.uit.edu.vn'
-  smtp_auth_username: '22521486@gm.uit.edu.vn'
-  smtp_auth_password: 'fmol pyha nujt ewoe'     
+  smtp_auth_username: '22521486@gm.uit.edu.vn'  
   smtp_require_tls: true
 
 route:
